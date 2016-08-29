@@ -1,0 +1,53 @@
+{
+  "name": "fly-pug-lint",
+  "version": "0.0.9",
+  "description": "Pug-lint plugin for Fly.",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/frantic1048/fly-pug-lint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frantic1048/fly-pug-lint.git"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "fly",
+    "fly-plugin",
+    "pug",
+    "pug-lint",
+    "jade",
+    "jade-lint",
+    "lint"
+  ],
+  "scripts": {
+    "pretest": "echo to be implemented...",
+    "test": "echo ava"
+  },
+  "author": {
+    "name": "frantic1048",
+    "email": "archer@frantic1048.com",
+    "url": "https://frantic1048.com"
+  },
+  "dependencies": {
+    "eslint": "^3.3.1",
+    "pug-lint": "^2.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "eslint": "^3.0.1",
+    "eslint-config-standard": "^5.3.1",
+    "eslint-plugin-promise": "^1.3.2",
+    "eslint-plugin-standard": "^2.0.0"
+  },
+  "peerDependencies": {
+    "fly": "^1.3.1"
+  },
+  "engines": {
+    "iojs": ">= 1.0.0",
+    "node": ">= 0.12.0"
+  }
+}
