@@ -51,6 +51,15 @@ function outputResults (results, options) {
   console.log(formatter(results, options))
 }
 
+function LinterError (message) {
+  this.name = 'LinterError'
+  this.message = message || ''
+}
+
+LinterError.prototype = Object.create(Error.prototype)
+
+exports.LinterError = LinterError
+
 module.exports = function pugLint () {
   this.puglint = function plugin (options) {
     const opt = options || {}
@@ -80,6 +89,16 @@ module.exports = function pugLint () {
         results = results.concat([linter.checkFile(file)])
       })
       outputResults(results, opt)
+
+      /**
+         * if any warning/error in results
+         * throw a LinterError to fail the task
+         */
+      const errorCount = results.length
+
+      if (errorCount > 0) {
+        throw new LinterError(errorCount + ' errors found.')
+      }
     })
   }
 }

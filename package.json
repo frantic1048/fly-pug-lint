@@ -1,6 +1,6 @@
 {
   "name": "fly-pug-lint",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Pug-lint plugin for Fly.",
   "license": "WTFPL",
   "bugs": {
