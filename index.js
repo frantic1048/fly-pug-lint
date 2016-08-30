@@ -3,8 +3,8 @@ const PugLint = require('pug-lint')
 /**
  * convert pug-lint results
  * to eslint formatter compatible results
- * @param  {[type]} results [description]
- * @return {[type]}         [description]
+ * @param  {Array<Array>} pug-lint output results
+ * @return {Array<object>} eslint formatter compatible results
  */
 function resultsAdaptor (results) {
   return results.reduce(function convertResults (
@@ -12,7 +12,7 @@ function resultsAdaptor (results) {
     pResultsPerFile // pug-lint results, per file
   ) {
     if (pResultsPerFile.length === 0) {
-      return
+      return eResults
     }
     const r = {}
     r.filePath = pResultsPerFile[0].filename
@@ -86,16 +86,18 @@ module.exports = function pugLint () {
       // results per file
       let results = []
       files.forEach(function lintFile (file) {
-        results = results.concat([linter.checkFile(file)])
+        const result = [linter.checkFile(file)]
+        results = results.concat(result)
       })
       outputResults(results, opt)
 
       /**
-         * if any warning/error in results
-         * throw a LinterError to fail the task
-         */
-      const errorCount = results.length
-
+       * if any warning/error in results
+       * throw a LinterError to fail the task
+       */
+      const errorCount = results.reduce(function sum (pre, cur) {
+        return pre + cur.length
+      }, 0)
       if (errorCount > 0) {
         throw new LinterError(errorCount + ' errors found.')
       }
